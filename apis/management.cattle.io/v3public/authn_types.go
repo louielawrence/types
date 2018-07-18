@@ -90,3 +90,16 @@ type PingProvider struct {
 type SamlLogin struct {
 	FinalRedirectURL string `json:"finalRedirectUrl"`
 }
+
+type PhabricatorProvider struct {
+	metav1.TypeMeta   `json:",inline"`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
+	AuthProvider      `json:",inline"`
+
+	RedirectURL string `json:"redirectUrl"`
+}
+
+type PhabricatorLogin struct {
+	GenericLogin `json:",inline"`
+	Code         string `json:"code" norman:"type=string,required"`
+}
